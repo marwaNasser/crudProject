@@ -1,0 +1,15 @@
+<h1 class=" text-center p-3">Profile</h1>
+<div class="container p-5 shadow">
+    <h6 *ngIf="data">seems like you deleted your data <a routerLink="/new-user" class=" text-muted curPointer">click to add ?</a></h6>
+    <div>
+        <h3 class=" text-muted py-1"><i class="fa-regular fa-user text-info"></i> {{userData.name}}</h3>
+        <h3 class=" text-muted py-1"><i class="fa-solid fa-lock text-info"></i> {{userData.email}}</h3>
+        <h3 class=" text-muted py-1"><i class="fa-solid fa-mobile-screen-button text-info"></i> {{userData.phone}}</h3>
+        <h3 class=" text-muted py-1"><i class="fa-solid fa-lock text-info"></i> password: {{userData.password}}</h3>
+    </div>
+
+</div>
+
+
+
+

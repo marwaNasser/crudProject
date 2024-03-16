@@ -1,0 +1,43 @@
+<div class="cont d-flex align-items-center justify-content-center">
+    <div class=" w-50 shadow p-5">
+        <h4 class="text-dark text-muted py-2">Add User</h4>
+        <h6 *ngIf="isAdded" class=" alert alert-success fs-6">User added successfully</h6>
+        <h6 *ngIf="err" class=" alert alert-danger fs-6">{{errMessage}}</h6>
+
+        <form (ngSubmit)="addUser()" [formGroup]="newUserForm">
+            <label for="name">name :</label>
+            <input formControlName="name" class=" form-control mb-3 border border-dark">
+            <div *ngIf="newUserForm.get('name')?.errors && newUserForm.get('name')?.touched">
+                <p *ngIf="newUserForm.get('name')?.getError('required')" class=" alert alert-danger py-1">name is required</p>
+                <p *ngIf="newUserForm.get('name')?.getError('minlength')" class=" alert alert-danger py-1">name minlength is 3</p>
+                <p *ngIf="newUserForm.get('name')?.getError('maxlength')" class=" alert alert-danger py-1">name maxlength is 15</p>
+            </div>
+    
+            <label for="email">email :</label>
+            <input formControlName="email" class=" form-control mb-3 border border-dark">
+            <div *ngIf="newUserForm.get('email')?.errors && newUserForm.get('email')?.touched">
+                <p *ngIf="newUserForm.get('email')?.getError('required')" class=" alert alert-danger py-1">E-mail is required</p>
+                <p *ngIf="newUserForm.get('email')?.getError('email')" class=" alert alert-danger py-1"> invalid E-mail format</p>
+            </div>
+    
+            <label for="phone">phone :</label>
+            <input formControlName="phone" class=" form-control mb-3 border border-dark">
+            <div *ngIf="newUserForm.get('phone')?.errors && newUserForm.get('phone')?.touched">
+                <p *ngIf="newUserForm.get('phone')?.getError('required')" class=" alert alert-danger py-1">phone is required</p>
+                <p *ngIf="newUserForm.get('phone')?.getError('pattern')" class=" alert alert-danger py-1">the phone number is invalid</p>
+            </div>
+    
+    
+            <label for="password">Password :</label>
+            <input type="password" formControlName="password" class=" form-control mb-3 border border-dark">
+            <div *ngIf="newUserForm.get('password')?.errors && newUserForm.get('password')?.touched">
+                <p *ngIf="newUserForm.get('password')?.getError('required')" class=" alert alert-danger py-1">password is required</p>
+                <p *ngIf="newUserForm.get('password')?.getError('pattern')" class=" alert alert-danger py-1">password should start with a letter followed by numbers and it's length 6-8 </p>
+            </div>
+            <button [disabled]="newUserForm.invalid" class=" btn btn btn-outline-primary" type="submit" >
+                ADD USER
+            </button>
+        </form>
+
+    </div>
+</div>

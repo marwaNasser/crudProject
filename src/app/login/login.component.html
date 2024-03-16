@@ -1,0 +1,32 @@
+<div class="cont d-flex align-items-center justify-content-center mt-5">
+    <div class=" w-50 shadow p-5">
+        <div *ngIf="errorMessage" class=" alert alert-danger">{{errorMessage}}</div>
+
+        <h3 class="text-dark text-muted py-2">login</h3>
+
+        <form (ngSubmit)="submitLoginForm()" [formGroup]="loginForm">
+            <label for="email">E-mail :</label>
+            <input type="email" formControlName="email" class=" form-control mb-3 border border-dark">
+            <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+                <p *ngIf="loginForm.get('email')?.getError('required')" class=" alert alert-danger py-1">email is
+                    required</p>
+                <p *ngIf="loginForm.get('email')?.getError('email')" class=" alert alert-danger py-1"> invalid E-mail
+                    format</p>
+            </div>
+
+            <label for="password">Password :</label>
+            <input type="password" formControlName="password" class=" form-control mb-3 border border-dark">
+            <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+                <p *ngIf="loginForm.get('password')?.getError('required')" class=" alert alert-danger py-1">password is
+                    required</p>
+            </div>
+            <div *ngIf="createAcc" class="">don't have an account <a class=" text-danger pb-2"
+                    routerLink="/signup">create account?</a></div>
+            <button [disabled]="loginForm.invalid" class=" btn btn-outline-primary" type="submit">
+                <span *ngIf="isLoading"><i class=" fas fa-spinner fa-spin"></i></span>
+                <span *ngIf="!isLoading">LogIn</span>
+            </button>
+        </form>
+
+    </div>
+</div>
